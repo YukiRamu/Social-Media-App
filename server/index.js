@@ -1,6 +1,8 @@
 //Express.js
 const express = require("express");
 const app = express();
+const userRoute = require("./routes/users");
+const authRoute = require("./routes/auth");
 
 //dotenv
 const dotenv = require("dotenv");
@@ -17,17 +19,17 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URL,
   { useNewUrlParser: true, useUnifiedTopology: true }, () => {
-    console.log(`Connected to Mongo DB`);
+    console.log(`!!!! Connected to Mongo DB!!!!`);
   });
 
-//middleware
+//middleware - use router
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
-app.get("/", (req, res) => {
-  res.send("welcome to homepage");
-});
+//configure router
+app.use("/api/users", userRoute);
+app.use("/api/auth", authRoute);
 
 //server listens
 app.listen(PORT, () => {
