@@ -18,11 +18,20 @@ const morgan = require('morgan');
 
 //Mongo DB library : Connection
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  () => {
-    console.log(`!!!! Connected to Mongo DB!!!!`);
-  });
+
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Database connected!"))
+  .catch(err => console.log(err));
+
+// mongoose.connect(process.env.MONGO_URL,
+//   { useNewUrlParser: true, useUnifiedTopology: true },
+//   () => {
+//     console.log(`!!!! Connected to Mongo DB!!!!`);
+//   });
 
 //middleware - use router
 app.use(express.json());
