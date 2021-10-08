@@ -1,0 +1,12 @@
+GET http://127.0.0.1:8800/api/auth/register
+
+###
+
+POST http://127.0.0.1:8800/api/auth/register
+Content-Type: application/json
+
+{
+    "usrename": "Jane",
+    "email": "jane@gmail.com",
+    "password": "123456"
+}
